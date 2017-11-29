@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="display: none;" >
+<html style="display: none;" lang="zh">
     <head>
     <meta charset="utf-8">
     <!--
@@ -37,7 +37,7 @@
     
     <title>
         
-        LyonAn�Ĳ���
+        LyonAn&#39;s Blog
     </title>
 
     <!-- Meta & Info -->
@@ -56,9 +56,9 @@
     <script>function Queue(){this.dataStore=[];this.offer=b;this.poll=d;this.execNext=a;this.debug=false;this.startDebug=c;function b(e){if(this.debug){console.log("Offered a Queued Function.")}if(typeof e==="function"){this.dataStore.push(e)}else{console.log("You must offer a function.")}}function d(){if(this.debug){console.log("Polled a Queued Function.")}return this.dataStore.shift()}function a(){var e=this.poll();if(e!==undefined){if(this.debug){console.log("Run a Queued Function.")}e()}}function c(){this.debug=true}}var queue=new Queue();</script>
 
     <!-- Favicons -->
-    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
-    <link rel="icon" sizes="192x192" href="/img/favicon.png">
-    <link rel="apple-touch-icon" href="/img/favicon.png">
+    <link rel="icon shortcut" type="image/ico" href="/img/head.png">
+    <link rel="icon" sizes="192x192" href="/img/head.png">
+    <link rel="apple-touch-icon" href="/img/head.png">
 
     <!--iOS -->
     <meta name="apple-mobile-web-app-title" content="Title">
@@ -73,7 +73,7 @@
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="LyonAn�Ĳ���">
+    <meta name="apple-mobile-web-app-title" content="LyonAn&#39;s Blog">
 
     <!-- Site Verification -->
     
@@ -86,7 +86,7 @@
         <link rel="stylesheet" href="/css/ie-blocker.css">
 
         
-            <script src="/js/ie-blocker.en.js"></script>
+            <script src="/js/ie-blocker.zhCN.js"></script>
         
     <![endif]-->
 
@@ -177,12 +177,7 @@
 
     <style>
       body{
-        background-color: #F5F5F5;
-      }
-
-      /* blog_info bottom background */
-      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
-        background-color: #fff;
+        background-image: url(/img/bg.png);
       }
     </style>
 
@@ -229,17 +224,17 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="LyonAn�Ĳ���">
-    <meta property="og:image" content="http://yoursite.com/img/favicon.png" />
+    <meta property="og:title" content="LyonAn&#39;s Blog">
+    <meta property="og:image" content="http://yoursite.com/img/head.png" />
     <meta property="og:description" content="">
     
 
     
 
     <!-- The Twitter Card protocol -->
-    <meta name="twitter:title" content="LyonAn�Ĳ���">
+    <meta name="twitter:title" content="LyonAn&#39;s Blog">
     <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="http://yoursite.com/img/favicon.png">
+    <meta name="twitter:image" content="http://yoursite.com/img/head.png">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="http://yoursite.com" />
 
@@ -257,13 +252,13 @@
     "@type": "Website",
     "publisher": {
         "@type": "Organization",
-        "name": "LyonAn�Ĳ���",
-        "logo": "/img/favicon.png"
+        "name": "LyonAn&#39;s Blog",
+        "logo": "/img/head.png"
     },
     "url": "http://yoursite.com",
     "image": {
         "@type": "ImageObject",
-        "url": "/img/favicon.png"
+        "url": "/img/head.png"
     },
     "mainEntityOfPage": {
         "@type": "WebPage",
@@ -315,11 +310,11 @@
 <div class="mdl-card mdl-shadow--2dp daily-pic mdl-cell mdl-cell--8-col index-top-block">
 
     <!-- Pic & Slogan -->
-    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/daily_pic.png)">
+    <div class="mdl-card__media mdl-color-text--grey-50" style="background-image:url(/img/1.jpg)">
         <p class="index-top-block-slogan"><a href="#">
         
             
-                Hi, nice to meet you
+                Don't be evil.
             
         
         </a></p>
@@ -329,7 +324,7 @@
     <div class="mdl-card__supporting-text meta mdl-color-text--grey-600">
         <!-- Author Avatar -->
         <div id="author-avatar">
-            <img src="/img/avatar.png" width="32px" height="32px" alt="avatar">
+            <img src="/img/head.png" width="32px" height="32px" alt="avatar">
         </div>
         <div>
             <strong>LyonAn</strong>
@@ -365,7 +360,7 @@
     <!-- LOGO -->
     <div class="something-else-logo mdl-color--white mdl-color-text--grey-600">
         <a href="#" target="_blank">
-            <img src="/img/logo.png" alt="logo" />
+            <img src="/img/github.png" alt="logo" />
         </a>
     </div>
 
@@ -373,7 +368,7 @@
     <div class="mdl-card__supporting-text meta meta--fill mdl-color-text--grey-600">
         <!-- Blog Title -->
         <div>
-            <strong>LyonAn�Ĳ���</strong>
+            <strong>LyonAn&#39;s Blog</strong>
         </div>
         <div class="section-spacer"></div>
 
@@ -383,6 +378,12 @@
             <span class="visuallyhidden">Pages</span>
         </button>
         <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="show-pages-button">
+            
+                <a class="index_share-link" href="/about" title="关于我">
+                    <li class="mdl-menu__item mdl-js-ripple-effect">
+                        关于我
+                    </li>
+                </a>
             
         </ul>
 
@@ -397,17 +398,17 @@
             
 
             
-                <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=LyonAn�Ĳ���&url=http://yoursite.com&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+                <a class="index_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=LyonAn&#39;s Blog&url=http://yoursite.com&pic=http://yoursite.com/img/head.png&searchPic=false&style=simple" target="_blank">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
-                        شارك على Weibo
+                        分享到微博
                     </li>
                 </a>
             
 
             
-                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=LyonAn�Ĳ���&url=http://yoursite.com&via=LyonAn" target="_blank">
+                <a class="index_share-link" href="https://twitter.com/intent/tweet?text=LyonAn&#39;s Blog&url=http://yoursite.com&via=LyonAn" target="_blank">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
-                        شارك على Twitter
+                        分享到 Twitter
                     </li>
                 </a>
             
@@ -415,7 +416,7 @@
             
                 <a class="index_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com" target="_blank">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
-                        شارك على Facebook
+                        分享到 Facebook
                     </li>
                 </a>
             
@@ -423,13 +424,19 @@
             
                 <a class="index_share-link" href="https://plus.google.com/share?url=http://yoursite.com" target="_blank">
                     <li class="mdl-menu__item mdl-js-ripple-effect">
-                        شارك على Google+
+                        分享到 Google+
                     </li>
                 </a>
             
 
             
 
+            
+                <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=LyonAn&#39;s Blog&title=LyonAn&#39;s Blog&summary=&pics=http://yoursite.com/img/head.png&url=http://yoursite.com" target="_blank">
+                    <li class="mdl-menu__item">
+                        分享到 QQ
+                    </li>
+                </a>
             
 
             
@@ -458,17 +465,17 @@
     
 
         <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/11/29/hello-world/">Hello World</a></p>
+        <p class="article-headline-p"><a href="/2017/11/29/Hi/">Hi</a></p>
     </div>
 
     <!-- Post Excerpt -->
     <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
         
-            Welcome to Hexo
+            ...
         
         &nbsp;&nbsp;&nbsp;
         <span>
-            <a href="/2017/11/29/hello-world/" target="_self">واصل القراءة</a>
+            <a href="/2017/11/29/Hi/" target="_self">阅读全文</a>
         </span>
     </div>
     <!-- Post_entry Info-->
@@ -476,11 +483,11 @@
         <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
             <!-- Author Avatar -->
             <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="LyonAn's avatar">
+                <img src="/img/head.png" width="44px" height="44px" alt="LyonAn's avatar">
             </div>
             <div>
                 <strong>LyonAn</strong>
-                <span>Nov 29, 2017</span>
+                <span>11月 29, 2017</span>
             </div>
         </div>
         <div id="post_entry-right-info">
@@ -532,7 +539,7 @@
 <aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
     <div id="sidebar-main">
         <!-- Sidebar Header -->
-        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+        <div class="sidebar-header header-cover" style="background-image: url(/img/background.png);">
     <!-- Top bar -->
     <div class="top-bar"></div>
 
@@ -547,12 +554,12 @@
 
     <!-- Sidebar Avatar -->
     <div class="sidebar-image">
-        <img src="/img/avatar.png" alt="LyonAn's avatar">
+        <img src="/img/head.png" alt="LyonAn's avatar">
     </div>
 
     <!-- Sidebar Email -->
     <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
-        youremail@email.com
+        lyon_an@163.com
         <b class="caret"></b>
     </a>
 </div>
@@ -565,7 +572,7 @@
         <ul id="settings-dropdown" class="dropdown-menu">
             
                 <li>
-                    <a href="#" target="_blank" title="Email Me">
+                    <a href="mailto:lyon_an@163.com" target="_blank" title="Email Me">
                         
                             <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
                         
@@ -583,7 +590,7 @@
                 
                     <i class="material-icons sidebar-material-icons">home</i>
                 
-                الرئيسية
+                主页
             </a>
         </li>
         
@@ -596,12 +603,12 @@
                 
                     <i class="material-icons sidebar-material-icons">inbox</i>
                 
-                    أرشيف
+                    归档
                 <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/11/">November 2017<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/11/">十一月 2017<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -609,11 +616,44 @@
 
     <!-- Categories  -->
     
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                
+            </ul>
+        </li>
+        
+    
 
     <!-- Pages  -->
     
+        <li>
+            <a href="/about" title="关于我">
+                
+                    <i class="material-icons sidebar-material-icons">person</i>
+                
+                关于我
+            </a>
+        </li>
+        
+    
 
     <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">1</span>
+            </a>
+        </li>
+        
     
 </ul>
 
@@ -638,7 +678,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <a href="https://github.com/viosey/hexo-theme-material"  class="sidebar-footer-text-a" target="_blank">
         <div class="sidebar-text mdl-button mdl-js-button mdl-js-ripple-effect sidebar-footer-text-div" data-upgraded=",MaterialButton,MaterialRipple">
-            سمة - Material
+            主题 - Material
             <span class="sidebar-badge badge-circle">i</span>
         </div>
     </a>
@@ -685,20 +725,8 @@ It will not impact the appearance and can give developers a lot of support :)
         <div class="mdl-mini-footer--left-section sns-list">
     <!-- Twitter -->
     
-        <a href="https://twitter.com/twitter" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-twitter">
-                <span class="visuallyhidden">Twitter</span>
-            </button><!--
-     --></a>
-    
 
     <!-- Facebook -->
-    
-        <a href="https://www.facebook.com/facebook" target="_blank">
-            <button class="mdl-mini-footer--social-btn social-btn footer-sns-facebook">
-                <span class="visuallyhidden">Facebook</span>
-            </button><!--
-     --></a>
     
 
     <!-- Google + -->
@@ -721,6 +749,12 @@ It will not impact the appearance and can give developers a lot of support :)
 
     <!-- Github -->
     
+        <a href="https://github.com/LyonAn" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn footer-sns-github">
+                <span class="visuallyhidden">Github</span>
+            </button><!--
+     --></a>
+    
 
     <!-- LinkedIn -->
     
@@ -741,7 +775,7 @@ It will not impact the appearance and can give developers a lot of support :)
 
         <!--Copyright-->
         <div id="copyright">
-            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>LyonAn�Ĳ���
+            Copyright&nbsp;©<script type="text/javascript">var fd = new Date();document.write("&nbsp;" + fd.getFullYear() + "&nbsp;");</script>LyonAn's Blog
             
         </div>
 
