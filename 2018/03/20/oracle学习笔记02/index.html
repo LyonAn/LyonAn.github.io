@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="LyonAn">
 <meta property="og:description" content="Oracle 数据库( SQL基础查询)1. 基本查询语句 使用别名  当一个SELECT 子句中查询的内容是一个函数或者表达式, 那么在结果集中对应的该字段的字段名就是这个函数表达式,可读性差,为此应当为该列添加别名  SELECT ename , sal*12 salary  FROM emp或SELECT ename , sal*12 AS salary  FROM emp别名不区分 大小写">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-29T07:58:40.087Z">
+<meta property="og:updated_time" content="2018-03-29T08:05:21.768Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 学习笔记02">
 <meta name="twitter:description" content="Oracle 数据库( SQL基础查询)1. 基本查询语句 使用别名  当一个SELECT 子句中查询的内容是一个函数或者表达式, 那么在结果集中对应的该字段的字段名就是这个函数表达式,可读性差,为此应当为该列添加别名  SELECT ename , sal*12 salary  FROM emp或SELECT ename , sal*12 AS salary  FROM emp别名不区分 大小写">
@@ -342,10 +342,10 @@ WHERE sal BETWEEN 1500 AND　3000</code></p>
 </li>
 <li><p><strong>全外连接</strong> : JOIN 两侧的表都为驱动表,综合左右外连接内容<br><code>FULL OUTER JOIN...ON...</code></p>
 </li>
-<li><p><strong>一般关联查询实现外连接效果</strong>: (+) 定义在连接条件上,定义在哪边哪边就补 NULL 但是无法实现全外连接<br>SQL如下：</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">SELECT</span> e.ename, d.dname <span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"> <span class="keyword">WHERE</span> e.deptno(+) = d.deptno</span><br><span class="line"><span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">- **自连接**</span></span><br><span class="line"><span class="string">&gt;当前表的一条记录对应当前表本身的多条记录, 这种设计就是自连接,自连接是用来解决数据内容相同,但是数据间又存在上下级关系的树状结构情况</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> 查找每个员工及其上司的名字</span></span><br><span class="line"><span class="string">`</span><span class="string">``</span><span class="keyword">SQL</span></span><br><span class="line"> <span class="keyword">SELECT</span> e.ename worker, m.ename manager <span class="keyword">FROM</span> emp e,emp m</span><br><span class="line"> <span class="keyword">WHERE</span> e.mgr = m.empno</span><br></pre></td></tr></table></figure>
+<li><p><strong>一般关联查询实现外连接效果</strong>: (+) 定义在连接条件上,定义在哪边哪边就补 NULL 但是无法实现全外连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">SELECT</span> e.ename, d.dname <span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"> <span class="keyword">WHERE</span> e.deptno(+) = d.deptno</span><br><span class="line"> <span class="string">``</span><span class="string">`  </span></span><br><span class="line"><span class="string">- **自连接**</span></span><br><span class="line"><span class="string">&gt;当前表的一条记录对应当前表本身的多条记录, 这种设计就是自连接,自连接是用来解决数据内容相同,但是数据间又存在上下级关系的树状结构情况</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"> 查找每个员工及其上司的名字</span></span><br><span class="line"><span class="string"> `</span><span class="string">``</span><span class="keyword">SQL</span></span><br><span class="line"> <span class="keyword">SELECT</span> e.ename worker, m.ename manager <span class="keyword">FROM</span> emp e,emp m</span><br><span class="line"> <span class="keyword">WHERE</span> e.mgr = m.empno</span><br></pre></td></tr></table></figure>
 <p>上述结果采用内连接</p>
- <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.ename worker, m.ename manager <span class="keyword">FROM</span> emp e <span class="keyword">JOIN</span> emp m</span><br><span class="line"><span class="keyword">ON</span> e.mgr = m.empno</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.ename worker, m.ename manager <span class="keyword">FROM</span> emp e <span class="keyword">JOIN</span> emp m</span><br><span class="line"><span class="keyword">ON</span> e.mgr = m.empno</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 
@@ -355,7 +355,7 @@ WHERE sal BETWEEN 1500 AND　3000</code></p>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-29T07:58:40.087Z" itemprop="dateUpdated">2018-03-29 15:58:40</time>
+    最后更新时间：<time datetime="2018-03-29T08:05:21.768Z" itemprop="dateUpdated">2018-03-29 16:05:21</time>
 </span><br>
 
 
