@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Oracle 学习笔记01 | LyonAn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据库">
+    <meta name="description" content="Oracle 数据库修改表 修改表名RENAME old_name TO new_name  修改表结构  添加列为 myemp 添加一列 hiredate :ALTER TABLE myemp ADD (hiredate DATE DEFAULT SYSDATE ) 删除列删除上面添加的字段ALTER TABLE m">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 学习笔记01">
+<meta property="og:url" content="http://yoursite.com/2018/03/20/oracle学习笔记01/index.html">
+<meta property="og:site_name" content="LyonAn">
+<meta property="og:description" content="Oracle 数据库修改表 修改表名RENAME old_name TO new_name  修改表结构  添加列为 myemp 添加一列 hiredate :ALTER TABLE myemp ADD (hiredate DATE DEFAULT SYSDATE ) 删除列删除上面添加的字段ALTER TABLE myemp DROP(hiredate) 修改列ALTER TABLE myemp">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-29T05:33:42.555Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 学习笔记01">
+<meta name="twitter:description" content="Oracle 数据库修改表 修改表名RENAME old_name TO new_name  修改表结构  添加列为 myemp 添加一列 hiredate :ALTER TABLE myemp ADD (hiredate DATE DEFAULT SYSDATE ) 删除列删除上面添加的字段ALTER TABLE myemp DROP(hiredate) 修改列ALTER TABLE myemp">
+    
+        <link rel="alternate" type="application/atom+xml" title="LyonAn" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/background.png)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">LyonAn</h5>
+          <a href="mailto:lyon_an@163.com" title="lyon_an@163.com" class="mail">lyon_an@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/LyonAn" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Oracle 学习笔记01</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Oracle 学习笔记01</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-20T05:06:48.000Z" itemprop="datePublished" class="page-time">
+  2018-03-20
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Oracle-数据库"><span class="post-toc-number">1.</span> <span class="post-toc-text">Oracle 数据库</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#修改表"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">修改表</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DML-语句"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">DML 语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-UPDATE"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">2. UPDATE</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-DELETE"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">3. DELETE</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#DQL-语句"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">DQL 语句</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-SELECT"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">1. SELECT</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#字符串函数"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">字符串函数</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#数值函数"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">数值函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#日期类型"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">日期类型</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#NULL"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">NULL</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-oracle学习笔记01"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Oracle 学习笔记01</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-20 13:06:48" datetime="2018-03-20T05:06:48.000Z"  itemprop="datePublished">2018-03-20</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Oracle-数据库"><a href="#Oracle-数据库" class="headerlink" title="Oracle 数据库"></a>Oracle 数据库</h2><h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><ol>
+<li><p>修改表名<br>RENAME old_name TO new_name</p>
+</li>
+<li><p>修改表结构</p>
+<ul>
+<li>添加列<br>为 myemp 添加一列 hiredate :<br><code>ALTER TABLE myemp ADD (hiredate DATE DEFAULT SYSDATE )</code></li>
+<li>删除列<br>删除上面添加的字段<br><code>ALTER TABLE myemp DROP(hiredate)</code></li>
+<li>修改列<br><code>ALTER TABLE myemp MODIFY(job VARCHAR2(40) DEFAULT &#39;CLERK&#39;)</code></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="DML-语句"><a href="#DML-语句" class="headerlink" title="DML 语句"></a>DML 语句</h3><blockquote>
+<p>DML 可以对表中的数据进行操作,分为 : INSERT, UPDATE , DELETE<br>DML 是伴随事务 ( Transaction ) 使用的.</p>
+<p>####1.  INSERT<br><code>INSERT INTO myemp (id, name, salary, job) VALUES (1, &#39;jack&#39;, 5000, &#39;CLERK&#39; )</code><br>若不指定字段,则需全列插入<br><code>INSERT INTO myemp VALUES(...)</code><br>插入一个日期值<br><code>INSERT INTO myemp (id, name, salary, birth, job) VALUES (2, &#39;tom&#39;, 3000, TO_DATE(&#39;2008-08-08&#39;,&#39;YYYY-MM-DD&#39;))</code></p>
+<h4 id="2-UPDATE"><a href="#2-UPDATE" class="headerlink" title="2. UPDATE"></a>2. UPDATE</h4><p>修改表中现有数据<br><code>UPDATE myemp SET gender=&#39;F&#39;, salary=9000 WHRER name=&#39;jack&#39;</code></p>
+<h4 id="3-DELETE"><a href="#3-DELETE" class="headerlink" title="3. DELETE"></a>3. DELETE</h4><p>删除数据<br>通常使用时添加 WHERE 条件,不添加则是清空表</p>
+</blockquote>
+<hr>
+<h3 id="DQL-语句"><a href="#DQL-语句" class="headerlink" title="DQL 语句"></a>DQL 语句</h3><h4 id="1-SELECT"><a href="#1-SELECT" class="headerlink" title="1. SELECT"></a>1. SELECT</h4><blockquote>
+<p>查看表中所有字段及其记录<br><code>SELECT * FROM emp</code><br>查看表中的某几个字段<br><code>SELECT ename, job, sal FROM emp</code><br>SELECT 子句可以查看:字段,函数,表达式<br><code>SELECT ename, sal*12 FROM emp</code><br>SELECT 子句结合 WHERE 子句<br><code>SELECT ename, job,sal,deptno FROM emp WHERE deptno=20</code></p>
+</blockquote>
+<h4 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h4><ul>
+<li><p><strong>CONCAT(P1,P2)</strong> : 字符串拼接<br><code>SELECT CONCAT(ename, sal) FROM emp;</code></p>
+</li>
+<li><p><strong>p1 || p2 || p3</strong>: 多字符拼接<br><code>SELECT ename||&#39;:&#39;||sal FROM emp</code></p>
+</li>
+<li><p><strong>LENGTH (p)</strong>: 获取字符串长度<br><code>SELECT ename, LENGTH(ename) FROM emp</code></p>
+</li>
+<li><p><strong>LOWER, UPPER, INICAP</strong> :小写,大写,首字母大写<br><code>SELECT LOWER(&#39;HELLO WORLD&#39;), UPPER(&#39;helloworld&#39;), INITCAP(&#39;hello world&#39;) FROM dual</code></p>
+<blockquote>
+<p>伪表 : dual<br>当查询内容与任何一张表无关时,为了满足 FROM子句的要求,可以使用伪表,伪表只会查出一条语句</p>
+</blockquote>
+</li>
+<li><p><strong>TRIM , LTRIM, RTRIM</strong>:去除字符串两边内容 (注意语法)<br><code>SELECT TRIM(&#39;e&#39; FROM &#39;eeeeliteeee&#39;) FROM emp</code><br><code>SELECT LTRIM(&#39;esesesliteeee&#39;,&#39;es&#39;) FROM dual</code><br><code>SELECT RTRIM(&#39;eeeeliteeee&#39;,&#39;e&#39;) FROM dual</code></p>
+</li>
+<li><p><strong>LPAD, RPAD</strong></p>
+<blockquote>
+<p>补位函数,可以将指定内容指定位数,不足时则补充若干个指定的定义字符以达到位数</p>
+</blockquote>
+<p> <code>SELECT LPAD(sal,6,&#39;$&#39;) FROM emp</code><br><code>SELECT RPAD(sal,6,&#39; &#39;) FROM emp</code></p>
+</li>
+<li><p><strong>SUBSTR(str,m[,n])</strong></p>
+<blockquote>
+<p>截取字符串 str 从m处开始,,连续截取n个,若不指定n,则是连续截取到字符串末尾<br>注意:数据库中下标从 1 开始</p>
+</blockquote>
+<p> <code>SELECT SUBSTR(&#39;thinking in java&#39;,10,2) FROM dual</code></p>
+</li>
+<li><p><strong>INSTR(str1, str2 [,n [,m]])</strong></p>
+<blockquote>
+<p>查找位置 : 查找 str2 在 str1 中的位置,若指定了位置 n  从 n 处开始查找第一次出现的位置,若指定了 m 则是查找第 m 次出现的位置</p>
+</blockquote>
+<p> <code>SELECT INSTR(&#39;thinking in java&#39;,&#39;in&#39;,4,2) FROM dual</code></p>
+</li>
+</ul>
+<hr>
+<h3 id="数值函数"><a href="#数值函数" class="headerlink" title="数值函数"></a>数值函数</h3><ul>
+<li><p><strong>ROUND(n [,m])</strong></p>
+<blockquote>
+<p>对 n 进行四舍五入, m 是保留到小数点后多少位, 若 m 为 0 或不指定,则保留整数,若 m 为负数, 则是保留小数点前的位数</p>
+</blockquote>
+<p>  <code>SELECT ROUND(45.678 , 2), ROUND(45.678) FROM dual</code><br><code>SELECT ROUND(45.678 , -1), ROUND(55.678, -2),ROUND(45.76, -2) FROM dual</code></p>
+</li>
+<li><p><strong>TRUNC(n,[,m])</strong></p>
+<blockquote>
+<p>数字截取函数,对 n 截取 m 位</p>
+</blockquote>
+<p>  <code>SELECT TRUNC(45.678, 2), TRUNC(45.678), TRUNC(55.678, -1) FROM dual</code></p>
+</li>
+<li><p><strong>MOD(n, m)</strong></p>
+<blockquote>
+<p>求余数,若 m 为 0 ,则直接返回 n</p>
+</blockquote>
+<p>  <code>SELECT MOD(13,4) FROM dual</code></p>
+</li>
+<li><p><strong>CEIL(n)和 FLOOR(n)</strong></p>
+<blockquote>
+<p>向上取整,向下取整</p>
+</blockquote>
+<p>  <code>SELECT CEIL(45.67) , FLOOR(45.67) FROM dual</code></p>
+</li>
+</ul>
+<hr>
+<h3 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h3><ul>
+<li><p><strong>DATE 与 TIMESTAMP</strong></p>
+<blockquote>
+<p>两者都是常用的日期类型, DATE 为7个字节,TIMESTAMP 为11个字节,多出来的4个字节用来表示秒以下的精度</p>
+</blockquote>
+</li>
+<li><p>日期相关关键字</p>
+<blockquote>
+<p><strong>SYSDATE</strong> : 表示一个内部函数,返回一个表示当前系统时间的 DATE  类型的值<br><strong>SYSTIMESTAMP</strong> : 返回时间戳类型的当前系统时间</p>
+</blockquote>
+</li>
+<li><p>日期类型比较大小</p>
+<blockquote>
+<p>越晚的越大,日期可以进行加减运算,加上一个数字等于加上指定的天数,减法同理.<br>两个日期相减,差为相差的天数</p>
+</blockquote>
+<ul>
+<li>查看每个员工入职天数(取整)<br><code>SELECT ename, CEIL(SYSDATE-hiredate) FROM emp</code></li>
+<li>查看 1982-1-1 以后入职的员工<br><code>SELECT ename, hiredate FROM emp
+WHERE hiredate &gt; TO_DATE(&#39;1982-01-01&#39;,&#39;YYYY-MM-DD&#39;);</code></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><p><strong>TO_DATE()</strong></p>
+<blockquote>
+<p>可以将一个字符串按照指定的日期格式转换成DATE</p>
+</blockquote>
+<p>RR : 两位数字表示年,会自动判定世纪<br>1950-02-04<br><code>SELECT TO_CHAR(TO_DATE(&#39;50-02-04&#39;,&#39;RR-MM-DD&#39;),&#39;YYYY-MM-DD&#39;) FROM dual</code><br>2049-02-04<br><code>SELECT TO_CHAR(TO_DATE(&#39;49-02-04&#39;,&#39;RR-MM-DD&#39;),&#39;YYYY-MM-DD&#39;) FROM dual</code></p>
+</li>
+<li><p><strong>TO_CHAR()</strong></p>
+<blockquote>
+<p>可以将日期按照指定日期格式转换为字符串<br><code>SELECT TO_CHAR(SYSDATE,&#39;YYYY-MM-DD HH12:MI:SS&#39;) FROM dual</code></p>
+</blockquote>
+<p>  注意: 日期格式字符串中,出现的字符凡是不是英文与符号,其他字符全部要使用双引号包围<br><code>SELECT TO_CHAR(SYSDATE,&#39;YYYY&quot;年&quot;MM&quot;月&quot;DD&quot;日&quot;&#39;) FROM dual</code></p>
+</li>
+<li><p><strong>LAST_DAY(date)</strong></p>
+<blockquote>
+<p>返回给定日期所在月的月底日期</p>
+</blockquote>
+<p>  <code>SELECT LAST_DAY(SYSDATE) FROM dual</code></p>
+</li>
+<li><p><strong>ADD_MONTHS(date , i)</strong></p>
+<blockquote>
+<p>返回日期date 加上 i 个月后的日期值</p>
+</blockquote>
+<pre><code>查看每个员工入职20周年纪念日
+</code></pre><p><code>SELECT ename, ADD_MONTHS(hiredate,20*12) FROM emp</code></p>
+</li>
+<li><p><strong>MONTHS_BETWEEN (date1, date2)</strong></p>
+<blockquote>
+<p>查看两个日期之间相差多少月</p>
+</blockquote>
+<p>  每个职工入职多少个月<br><code>SELECT ename, MONTHS_BETWEEN(SYSDATE, hiredate) FROM emp</code>  </p>
+</li>
+<li><p><strong>NEXT_DAY(date , i)</strong></p>
+<blockquote>
+<p>返回给定日期之后一周内的周几对应的日期</p>
+</blockquote>
+<p>  <code>SELECT NEXT_DAY(SYSDATE,4) FROM dual</code></p>
+</li>
+<li><p><strong>LEAST,GREATEST</strong>  </p>
+<blockquote>
+<p>返回参数列表中 最小值 和 最大值</p>
+</blockquote>
+<p>  <code>SELECT LEAST(SYSDATE, TO_DATE(&#39;2008-08-08&#39;,&#39;YYYY-MM-DD&#39;)) FROM dual</code></p>
+<p>82 年以前返回1982-1-1, 82年以后返回入职日期<br><code>SELECT ename, GREATEST(hiredate, TO_DATE(&#39;1982-01-01&#39;,&#39;YYYY-MM-DD&#39;)) FROM emp</code></p>
+</li>
+<li><p><strong>EXTRACT</strong></p>
+<blockquote>
+<p>提取一个日期中指定的时间分量</p>
+</blockquote>
+<p>  <code>SELECT EXTRACT(YEAR FROM SYSDATE) FROM dual</code><br>查看1982年入职的员工<br><code>SELECT ename, hiredate FROM emp WHERE EXTRACT(YEAR FROM hiredate )=1982</code></p>
+</li>
+</ul>
+<h3 id="NULL"><a href="#NULL" class="headerlink" title="NULL"></a>NULL</h3><ul>
+<li><p>NULL 的运算</p>
+<ul>
+<li>与字符串连接等于什么也没做</li>
+<li>与数字运算结果还是 NULL</li>
+</ul>
+</li>
+<li><p><strong>NVL(p1, p2)</strong></p>
+<blockquote>
+<p>当 p1 为 NULL 时,函数返回 p2, 若 p1 不为 NULL ,则函数返回 p1 本身</p>
+</blockquote>
+<p><code>SELECT ename ,sal, comm,sal+NVL(comm, 0 ) FROM emp</code></p>
+</li>
+<li><p><strong>NVL2(p1, p2 , p3)</strong></p>
+<blockquote>
+<p>若 p1 为 NULL 则返回 p3, 若 p1 不为 NULL 则返回 p2<br>根据com字段是否为 NULL 判断有没有奖金</p>
+</blockquote>
+<p>  <code>SELECT ename, NVL2(comm,&#39;有奖金&#39;,&#39;没奖金&#39;) FROM emp</code></p>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-29T05:33:42.555Z" itemprop="dateUpdated">2018-03-29 13:33:42</time>
+</span><br>
+
+
+        
+        转载请注明原作者，如果你觉得这篇文章对你有帮助或启发，也可以点击打赏请我喝咖啡。
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/head.jpg" alt="LyonAn">
+            LyonAn
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/20/oracle学习笔记01/&title=《Oracle 学习笔记01》 — LyonAn&pic=http://yoursite.com/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/20/oracle学习笔记01/&title=《Oracle 学习笔记01》 — LyonAn&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/20/oracle学习笔记01/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 学习笔记01》 — LyonAn&url=http://yoursite.com/2018/03/20/oracle学习笔记01/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/20/oracle学习笔记01/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/11/30/基于-Hexo-GitHub-Pages-搭建个人博客/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">基于 Hexo + GitHub Pages 搭建个人博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>LyonAn &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/20/oracle学习笔记01/&title=《Oracle 学习笔记01》 — LyonAn&pic=http://yoursite.com/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/20/oracle学习笔记01/&title=《Oracle 学习笔记01》 — LyonAn&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/20/oracle学习笔记01/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 学习笔记01》 — LyonAn&url=http://yoursite.com/2018/03/20/oracle学习笔记01/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/20/oracle学习笔记01/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACH0lEQVR42u3aMXLjMBAEQP3/03J6wZmaWVCuItCIWLJEohmMgV28XvF4B+O37//7yW9/vf78toGBgfFYRjK568+v73x9h+T+yYvDwMA4gZFMIv/VdXQmryyfGwYGBkZyfdekMTAwML4XuMnCLt+mYmBgYKxsYvPwbaeVsG/bi2NgYDyQkVfd//76K/0NDAyMRzHe5WjbmbOFYD0rDAyMrRl5wCUFtTYuVwIXAwPjNMbsByvhmAOSjTEGBsYJjNmhh9kjkzbn8MAHBgbGMYyV4xGzhkELiwIXAwNjI8a9G8683diG+4cVIAYGxtaM701lNun6f8Wsw4CBgfFwxkrpra19ta/15gUiBgbGQxizSL0O6DzEZy/iPzPBwMA4mNGW5O5qfNYwDAyMrRkrE22L/nlML50QwcDA2JSRLwHbUtoMnN+5OGyBgYHxWEa7KFxZ6rWHMJaiFgMDYyNGi8mvZxva9tgHBgbGOYx2ovmDE1geuFEQY2BgbMrIG4qv0WjbCW3ZDgMD4xzGrEzftg3yp9RFOgwMjCMZswVfXhNrQ/xDqwADA2NTxrscbUSuh+lwUYiBgbERYyXs2gZn20hIvl9jMDAwHsvIQ7ZdGrbIPHBfedJjYGBsxMiDr43IWSNzeGYEAwMDo2w3zl7KsKiHgYGBMTpkf33Mom1FfIhyDAyMAxizZsAKYH0xioGBcQ5jaet408Y1odYFOAwMjB0YP67SS6lOCU9TAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'LyonAn';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'LyonAn';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
