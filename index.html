@@ -147,11 +147,11 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-oracle学习笔记01"
+            <article id="post-oracle学习笔记04"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-03-20 13:06:48" datetime="2018-03-20T05:06:48.000Z"  itemprop="datePublished">2018-03-20</time>
+        <time class="post-time" title="2018-03-29 16:25:10" datetime="2018-03-29T08:25:10.000Z"  itemprop="datePublished">2018-03-29</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
@@ -165,7 +165,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/03/20/oracle学习笔记01/">Oracle 学习笔记01</a>
+      <a class="post-title-link" href="/2018/03/29/oracle学习笔记04/">Oracle 学习笔记04</a>
     </h3>
   
 
@@ -175,17 +175,71 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        Oracle 数据库修改表
-修改表名RENAME old_name TO new_name
+        1. 视图
+视图是数据库对象之一,数据库对象有: 表 , 视图 , 索引 , 序列视图在SLQ中的体现的角色与表相同，但是并非真实的表，它不包含任何数据。它只是对应一个查询语句的结果集所以查询一张视图时，先会执行该视图对应的查询语句得到结果集，然后再根据这个结果集进行实际的查询工作。
 
-修改表结构
 
-添加列为 myemp 添加一列 hiredate :ALTER TABLE myemp ADD (hiredate DATE DEFAULT SYSDATE )
-删除列删除上面添加的字段ALTER TABLE myemp DROP(hiredate)
-修改列ALTER TABLE my...
+简单视图
+
+视图数据来自单一的一张表，且不含有函数或表达式
+
+
+复杂视图
+
+查询语句含有函数，表达式，分...
     
 
-        <a href="/2018/03/20/oracle学习笔记01/" class="post-more waves-effect waves-button">
+        <a href="/2018/03/29/oracle学习笔记04/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-oracle学习笔记03"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-03-29 16:24:50" datetime="2018-03-29T08:24:50.000Z"  itemprop="datePublished">2018-03-29</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/03/29/oracle学习笔记03/">Oracle 学习笔记03</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Oracle 数据库 ( SQL  高级查询)1. 子查询
+子查询就是一条SQL语句,它是嵌套在其他SQL语句中的,目的是为实际的SQL语句提供数据子查询可以应用在 DQL, DDL, DML 中
+
+查看比 CLARK 工资高的员工信息123SELECT ename,sal FROM empWHERE sal &gt; (SELECT sal FROM emp             WHE...
+    
+
+        <a href="/2018/03/29/oracle学习笔记03/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -253,6 +307,60 @@ SELECT ename , sal*12 salary  FROM emp或SELECT ename , sal*12 AS salary  FROM e
         </li>
     
         <li class="post-list-item fade">
+            <article id="post-oracle学习笔记01"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-03-20 13:06:48" datetime="2018-03-20T05:06:48.000Z"  itemprop="datePublished">2018-03-20</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/03/20/oracle学习笔记01/">Oracle 学习笔记01</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Oracle 数据库修改表
+修改表名RENAME old_name TO new_name
+
+修改表结构
+
+添加列为 myemp 添加一列 hiredate :ALTER TABLE myemp ADD (hiredate DATE DEFAULT SYSDATE )
+删除列删除上面添加的字段ALTER TABLE myemp DROP(hiredate)
+修改列ALTER TABLE my...
+    
+
+        <a href="/2018/03/20/oracle学习笔记01/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-基于-Hexo-GitHub-Pages-搭建个人博客"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -281,7 +389,7 @@ SELECT ename , sal*12 salary  FROM emp或SELECT ename , sal*12 AS salary  FROM e
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        前言之前一直想弄个自己的个人博客，记录自己的学习历程。看了很多网站，像 CSDN 、博客园 、简书也都有博客专栏，总感觉不够个性化，但自己撸一个网站苦于前端技术太渣，耗时好力还不讨喜。于是折中选择使用 Hexo + GitHub 来搭建这个个人博客，也顺便熟悉一下 git 的基本知识。
+        前言之前一直想弄个自己的个人博客，记录自己的学习历程。看了很多网站，像 CSDN 、博客园 、简书也都有博客专栏，总感觉不够个性化，但自己撸一个网站苦于前端技术太渣，耗时耗力还不讨喜。于是折中选择使用 Hexo + GitHub 来搭建这个个人博客，也顺便熟悉一下 git 的基本知识。
 
 什么是 Hexo
 Hexo 是一款基于 Node.js 的静态博客框架，可以生成静态网页托管在 GitH...

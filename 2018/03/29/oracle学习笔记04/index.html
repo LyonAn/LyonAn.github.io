@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Oracle 学习笔记04 | LyonAn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据库">
+    <meta name="description" content="1. 视图 视图是数据库对象之一,数据库对象有: 表 , 视图 , 索引 , 序列视图在SLQ中的体现的角色与表相同，但是并非真实的表，它不包含任何数据。它只是对应一个查询语句的结果集所以查询一张视图时，先会执行该视图对应的查询语句得到结果集，然后再根据这个结果集进行实际的查询工作。   简单视图  视图数据来自单一的">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 学习笔记04">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/oracle学习笔记04/index.html">
+<meta property="og:site_name" content="LyonAn">
+<meta property="og:description" content="1. 视图 视图是数据库对象之一,数据库对象有: 表 , 视图 , 索引 , 序列视图在SLQ中的体现的角色与表相同，但是并非真实的表，它不包含任何数据。它只是对应一个查询语句的结果集所以查询一张视图时，先会执行该视图对应的查询语句得到结果集，然后再根据这个结果集进行实际的查询工作。   简单视图  视图数据来自单一的一张表，且不含有函数或表达式   复杂视图  查询语句含有函数，表达式，分组等">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-29T08:41:50.481Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 学习笔记04">
+<meta name="twitter:description" content="1. 视图 视图是数据库对象之一,数据库对象有: 表 , 视图 , 索引 , 序列视图在SLQ中的体现的角色与表相同，但是并非真实的表，它不包含任何数据。它只是对应一个查询语句的结果集所以查询一张视图时，先会执行该视图对应的查询语句得到结果集，然后再根据这个结果集进行实际的查询工作。   简单视图  视图数据来自单一的一张表，且不含有函数或表达式   复杂视图  查询语句含有函数，表达式，分组等">
+    
+        <link rel="alternate" type="application/atom+xml" title="LyonAn" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/background.png)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">LyonAn</h5>
+          <a href="mailto:lyon_an@163.com" title="lyon_an@163.com" class="mail">lyon_an@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/LyonAn" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Oracle 学习笔记04</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Oracle 学习笔记04</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-29T08:25:10.000Z" itemprop="datePublished" class="page-time">
+  2018-03-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-视图"><span class="post-toc-number">1.</span> <span class="post-toc-text">1. 视图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-视图的DML操作"><span class="post-toc-number">2.</span> <span class="post-toc-text">2. 视图的DML操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-序列"><span class="post-toc-number">3.</span> <span class="post-toc-text">3 .  序列</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-索引"><span class="post-toc-number">4.</span> <span class="post-toc-text">4 .  索引</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-oracle学习笔记04"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Oracle 学习笔记04</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-29 16:25:10" datetime="2018-03-29T08:25:10.000Z"  itemprop="datePublished">2018-03-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="1-视图"><a href="#1-视图" class="headerlink" title="1. 视图"></a>1. 视图</h3><blockquote>
+<p>视图是数据库对象之一,数据库对象有: 表 , 视图 , 索引 , 序列<br>视图在SLQ中的体现的角色与表相同，但是并非真实的表，它不包含任何数据。它只是对应一个查询语句的结果集<br>所以查询一张视图时，先会执行该视图对应的查询语句得到结果集，然后再根据这个结果集进行实际的查询工作。</p>
+</blockquote>
+<ul>
+<li><p>简单视图</p>
+<blockquote>
+<p>视图数据来自单一的一张表，且不含有函数或表达式</p>
+</blockquote>
+</li>
+<li><p>复杂视图</p>
+<blockquote>
+<p>查询语句含有函数，表达式，分组等</p>
+</blockquote>
+</li>
+<li><p>连接视图</p>
+<blockquote>
+<p>视图数据来自多张表，算是复杂视图的一种</p>
+</blockquote>
+</li>
+</ul>
+<p>创建一个简单视图 , 显示部门 10 的员工信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> v_emp_dept10</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> empno <span class="keyword">id</span>, ename <span class="keyword">name</span>, sal salary,deptno</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> deptno = <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>创建一个复杂视图， 显示 不同部门的工资信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> v_salinfo</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">AVG</span>(sal) avg_sal,</span><br><span class="line">       <span class="keyword">SUM</span>(sal) sum_sal,</span><br><span class="line">       <span class="keyword">MAX</span>(sal) max_sal,</span><br><span class="line">       <span class="keyword">MIN</span>(sal) min_sal ,</span><br><span class="line">       e.deptno, d.dname</span><br><span class="line"><span class="keyword">FROM</span> emp e, dept d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = d.deptno</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> e.deptno, d.dname</span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong>: 当视图对应的查询语中字段含有函数和或者表达式时,该字段必须给别名</p>
+<p>基于上述视图实现查询<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询工资低于部门平均工资的员工信息</span></span><br><span class="line"><span class="keyword">SELECT</span> e.ename, e.sal, e.deptno</span><br><span class="line"><span class="keyword">FROM</span> emp e, v_salinfo v</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = v.deptno</span><br><span class="line"><span class="keyword">AND</span> e.sal&lt; v.avg_sal;</span><br></pre></td></tr></table></figure></p>
+<p>删除视图<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 删除视图并不会删除基表中的数据</span></span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> v_emp_dept10</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="2-视图的DML操作"><a href="#2-视图的DML操作" class="headerlink" title="2. 视图的DML操作"></a>2. 视图的DML操作</h3><blockquote>
+<p>对视图进行DML操作<br>仅能对简单视图进行 DML 操作，复杂视图不允许进行 DML 操作。</p>
+</blockquote>
+<p>简单视图的DML操作要求</p>
+<blockquote>
+<p>注意不能违反基表的约束条件<br>基表： 视图数据来源的表<br>对视图进行 DML 操作就是对基表进行 DML 操作</p>
+</blockquote>
+<ul>
+<li><p>向视图对应的基表插入一条</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> v_emp_dept10</span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,salary,deptno) <span class="keyword">VALUES</span> (<span class="number">1001</span>，<span class="string">'JACK'</span>,<span class="number">5000</span>，<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>更新记录</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> v_emp_dept10</span><br><span class="line"><span class="keyword">SET</span> salary = <span class="number">9000</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">id</span> = <span class="number">1001</span>;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<p><em>视图对基表的污染</em></p>
+<blockquote>
+<p>对视图进行某些 DML 操作时，可能导致视图自身对该记录不可见，但是依然能影响到基表记录，这种操作是对基表的“污染”。（DELETE 操作不会造成该影响）<br> 举例 1：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--因为视图本身只能查询到 部门10 的数据，所以一下插入的数据对基表修改了，但是视图不可见</span></span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> v_emp_dept10</span><br><span class="line">(<span class="keyword">id</span>, <span class="keyword">name</span>, salary, deptno) <span class="keyword">VALUES</span> (<span class="string">'1002'</span>,<span class="string">'ROSE'</span>,<span class="number">5000</span>,<span class="number">20</span>)</span><br><span class="line"><span class="comment">--以下操作将视图所能查询到的部门 10 的部门号都改为20，导致基表不存在部门10，再次查询该视图则会没有记录</span></span><br><span class="line"><span class="keyword">UPDATE</span>  v_emp_dept10</span><br><span class="line"><span class="keyword">SET</span> deptno = <span class="number">20</span>；</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>如何防止上述情况发生？<strong>对视图添加检查选项</strong></p>
+<blockquote>
+<p>添加了检查选项的视图要求对视图进行 DML 操作后，视图必须对其可控：<br>INSERT 后视图必须可见，UPDATE 后视图也必须对其可见，DELETE 不影响</p>
+</blockquote>
+<p>创建视图 指定检查选项 ( WITH CHECK OPTION)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> v_emp_dept10</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> empno <span class="keyword">id</span>, ename <span class="keyword">name</span>, sal salary,deptno</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> deptno = <span class="number">10</span></span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">CHECK</span> <span class="keyword">OPTION</span></span><br></pre></td></tr></table></figure></p>
+<p>创建视图 指定只读选项 ( WITH READ ONLY)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 该视图只能进行查询，不能进行 DML 操作</span></span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> <span class="keyword">REPLACE</span> <span class="keyword">VIEW</span> v_emp_dept10</span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> empno <span class="keyword">id</span>, ename <span class="keyword">name</span>, sal salary,deptno</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> deptno = <span class="number">10</span></span><br><span class="line"><span class="keyword">WITH</span> <span class="keyword">READ</span> <span class="keyword">ONLY</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="3-序列"><a href="#3-序列" class="headerlink" title="3 .  序列"></a>3 .  序列</h3><blockquote>
+<p>数据库对象之一，用来生成一系列数字，通常序列生成的数字是为某张表的主键字段（id）提供值的</p>
+</blockquote>
+<p>创建 从1000 开始，每次自增 10 的序列<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">SEQUENCE</span> seq_emp_empno</span><br><span class="line"><span class="keyword">START</span> <span class="keyword">WITH</span> <span class="number">1000</span></span><br><span class="line"><span class="keyword">INCREMENT</span> <span class="keyword">BY</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>序列支持两个伪列：</p>
+<blockquote>
+<ul>
+<li>NEXTVAL  :  使序列生成下一个数字，新创建的序列第一次生成是 START WITH 指定的数，以后就是上次生成的数字加上步长得到的。序列不能后退，所以生成新数字后就不能得到以前的数字了</li>
+<li>CURRVAL ： 返回序列最后生成的数字， 新创建的序列至少调用一次 NEXTVAL 以后才可以使用CURRVAL<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> seq_emp_empno.NEXTVAL <span class="keyword">FROM</span> dual; <span class="comment">-- 第一次执行结果为1000， 以后每次加10</span></span><br><span class="line"><span class="keyword">SELECT</span> seq_emp_empno.CURRVAL <span class="keyword">FROM</span> dual; <span class="comment">-- 执行后为当前数字</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</blockquote>
+<p>使用序列插入数据（主键自增）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> emp</span><br><span class="line">(empno, ename, job ,sal, deptno)</span><br><span class="line"><span class="keyword">VALUES</span></span><br><span class="line">(seq_emp_empno.NEXTVAL,<span class="string">'jack'</span>,<span class="string">'CLERK'</span> ,<span class="number">1000</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure></p>
+<p>删除序列<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP SEQENCE sqq_emp_empno</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="4-索引"><a href="#4-索引" class="headerlink" title="4 .  索引"></a>4 .  索引</h3><blockquote>
+<p>索引是一种允许直接访问数据表中某一数据行的属性结构，为了提高查询效率而引入的，是独立于表的对象</p>
+</blockquote>
+<p>创建索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_emp_ename <span class="keyword">ON</span> emp(ename)</span><br></pre></td></tr></table></figure></p>
+<p>创建复合索引（多字段）<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">index</span> idx_emp_job_sal <span class="keyword">ON</span> emp(job,sal)</span><br></pre></td></tr></table></figure></p>
+<p>创建基于函数的索引<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">INDEX</span> idx_emp_ename_upper <span class="keyword">ON</span> emp(<span class="keyword">UPPER</span>(ename))</span><br></pre></td></tr></table></figure></p>
+<p>在查询 索引 所绑定的字段时，数据库管理软件会自动调用索引以提高效率。</p>
+<p><strong>注意</strong>：索引不宜创建过多，表的数据量不大时不推荐创建索引。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-29T08:41:50.481Z" itemprop="dateUpdated">2018-03-29 16:41:50</time>
+</span><br>
+
+
+        
+        转载请注明原作者，如果你觉得这篇文章对你有帮助或启发，也可以点击打赏请我喝咖啡。
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/head.jpg" alt="LyonAn">
+            LyonAn
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/29/oracle学习笔记04/&title=《Oracle 学习笔记04》 — LyonAn&pic=http://yoursite.com/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/29/oracle学习笔记04/&title=《Oracle 学习笔记04》 — LyonAn&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/29/oracle学习笔记04/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 学习笔记04》 — LyonAn&url=http://yoursite.com/2018/03/29/oracle学习笔记04/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/29/oracle学习笔记04/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/29/oracle学习笔记03/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Oracle 学习笔记03</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>LyonAn &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/29/oracle学习笔记04/&title=《Oracle 学习笔记04》 — LyonAn&pic=http://yoursite.com/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/29/oracle学习笔记04/&title=《Oracle 学习笔记04》 — LyonAn&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/29/oracle学习笔记04/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 学习笔记04》 — LyonAn&url=http://yoursite.com/2018/03/29/oracle学习笔记04/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/29/oracle学习笔记04/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLElEQVR42u3aQW7DMAwEwP7/0+m1QBFnl0oCWBqfAje1NSzAihR/fuLr8e/Kv//3zrOfXt9/24WBgXFbxuPySl6Q3L8ORPLeF6HEwMA4gJEs4jrX5ak5CVm+NgwMDIyEkTwnWTQGBgbGNxPudSk7exoGBgZGmxaTZDoLx8drcQwMjBsy8q779z9/5HwDAwPjVoxHec1S7UqrLloVBgbG1oy2ldYuaz2J55tIDAyM0xhJ4z5PwfkhZfuuF/HDwMDYgpFbV0bH2rZdG1AMDIy9GevHkHlKbUvc2cgsBgbGfow8dbZ32jbc7JjzadcQAwNjI0bSSlsabigXPfxfgYGBsTWjTZFtgywvdJNDzaffxMDAOIDRtvXbFyfPScLxNIljYGBszUi2brOt3nuPOaNwYGBgHMBoW/Pt7ybUYkJkZSkYGBg3ZLQbsmQp7ThFe3hQN+AwMDA2ZbTNr9mYV97ae/NZBAYGxk0Ys/S6Hpq8DRdtRjEwMLZmtJjZ8MR6hoyejIGBcQAj+ZwUrrPSdz1kGBgY5zDysna2oWwHxephCwwMjGMY7eFiW4LOSuIXRwUYGBibMh7llZSm+XLbNtyLvwMGBsamjFmyu0YOS9CybzbEYGBg3JYxS7J5WlwZCCuSLAYGxgGMPPEtNcU+PWyBgYGBESTE9aDkq8LAwMBoRyhyZJtqo5BhYGAcwEiK2NmhZtueG25GMTAwtma0pWOOzAvXhFo34DAwMHZg/AKzJ0upldrqLQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'LyonAn';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'LyonAn';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>

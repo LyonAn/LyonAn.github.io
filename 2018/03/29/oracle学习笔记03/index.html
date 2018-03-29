@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Oracle 学习笔记03 | LyonAn</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="数据库">
+    <meta name="description" content="Oracle 数据库 ( SQL  高级查询)1. 子查询 子查询就是一条SQL语句,它是嵌套在其他SQL语句中的,目的是为实际的SQL语句提供数据子查询可以应用在 DQL, DDL, DML 中  查看比 CLARK 工资高的员工信息123SELECT ename,sal FROM empWHERE sal &amp">
+<meta name="keywords" content="数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Oracle 学习笔记03">
+<meta property="og:url" content="http://yoursite.com/2018/03/29/oracle学习笔记03/index.html">
+<meta property="og:site_name" content="LyonAn">
+<meta property="og:description" content="Oracle 数据库 ( SQL  高级查询)1. 子查询 子查询就是一条SQL语句,它是嵌套在其他SQL语句中的,目的是为实际的SQL语句提供数据子查询可以应用在 DQL, DDL, DML 中  查看比 CLARK 工资高的员工信息123SELECT ename,sal FROM empWHERE sal &amp;gt; (SELECT sal FROM emp             WHERE">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-29T08:37:02.755Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Oracle 学习笔记03">
+<meta name="twitter:description" content="Oracle 数据库 ( SQL  高级查询)1. 子查询 子查询就是一条SQL语句,它是嵌套在其他SQL语句中的,目的是为实际的SQL语句提供数据子查询可以应用在 DQL, DDL, DML 中  查看比 CLARK 工资高的员工信息123SELECT ename,sal FROM empWHERE sal &amp;gt; (SELECT sal FROM emp             WHERE">
+    
+        <link rel="alternate" type="application/atom+xml" title="LyonAn" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/background.png)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/head.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">LyonAn</h5>
+          <a href="mailto:lyon_an@163.com" title="lyon_an@163.com" class="mail">lyon_an@163.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/LyonAn" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Oracle 学习笔记03</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Oracle 学习笔记03</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-03-29T08:24:50.000Z" itemprop="datePublished" class="page-time">
+  2018-03-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Oracle-数据库-SQL-高级查询"><span class="post-toc-number">1.</span> <span class="post-toc-text">Oracle 数据库 ( SQL  高级查询)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#1-子查询"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">1. 子查询</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#2-分页查询"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">2. 分页查询</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#计算分页公式"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">计算分页公式</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#3-排序函数"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">3 . 排序函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#4-DECODE-函数"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">4. DECODE 函数</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#5-集合操作"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">5 . 集合操作</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#6-高级分组函数"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">6 . 高级分组函数</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-oracle学习笔记03"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Oracle 学习笔记03</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-03-29 16:24:50" datetime="2018-03-29T08:24:50.000Z"  itemprop="datePublished">2018-03-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/技术/">技术</a></li></ul>
+
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="Oracle-数据库-SQL-高级查询"><a href="#Oracle-数据库-SQL-高级查询" class="headerlink" title="Oracle 数据库 ( SQL  高级查询)"></a>Oracle 数据库 ( SQL  高级查询)</h2><h3 id="1-子查询"><a href="#1-子查询" class="headerlink" title="1. 子查询"></a>1. 子查询</h3><blockquote>
+<p>子查询就是一条SQL语句,它是嵌套在其他SQL语句中的,目的是为实际的SQL语句提供数据<br>子查询可以应用在 DQL, DDL, DML 中</p>
+</blockquote>
+<p>查看比 CLARK 工资高的员工信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename,sal <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> sal &gt; (<span class="keyword">SELECT</span> sal <span class="keyword">FROM</span> emp</span><br><span class="line">             <span class="keyword">WHERE</span> ename = <span class="string">'CLARK'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>  查找和CLARK相同部门的其他员工<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename, deptno <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> deptno = (<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp</span><br><span class="line">                <span class="keyword">WHERE</span> ename=<span class="string">'CLARK'</span>)</span><br><span class="line"><span class="keyword">AND</span> ename&lt;&gt;<span class="string">'CLARK'</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><p><strong>子查询在 DDL 中的应用</strong>:<br>可以根据查询结果集快速创建一张表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> myemployee <span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> e.empno, e.ename,e.sal,e.job,e.deptno,d.dname,d.loc</span><br><span class="line"><span class="keyword">FROM</span> emp e <span class="keyword">JOIN</span> dept d</span><br><span class="line"><span class="keyword">ON</span> e.deptno= d.deptno;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>子查询在  DML 中的应用</strong>:<br>将CLARK所在部门所有员工的工资加500</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> emp</span><br><span class="line"><span class="keyword">SET</span> sal= sal+<span class="number">500</span></span><br><span class="line"><span class="keyword">WHERE</span> deptno=(<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename=<span class="string">'CLARK'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<blockquote>
+<p>子查询根据查询结果不同,分为:</p>
+<ol>
+<li>单行单列子查询: 常用作过滤条件</li>
+<li>多行单列子查询: 常用作过滤条件</li>
+<li>多行多列子查询: 常当做表看待</li>
+</ol>
+</blockquote>
+<ul>
+<li><p><strong>多行单列子查询</strong><br>查看与职位是 SALESMAN 同部门的其他员工</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename, job, deptno <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> deptno <span class="keyword">IN</span> (<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp</span><br><span class="line">                  <span class="keyword">WHERE</span> job=<span class="string">'SALESMAN'</span>)</span><br><span class="line"><span class="keyword">AND</span> job &lt;&gt; <span class="string">'SALESMAN'</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>多行多列子查询</strong><br>查询比本部门平均工资高的员工信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.ename, e.sal, e.deptno</span><br><span class="line"><span class="keyword">FROM</span> emp e,(<span class="keyword">SELECT</span> <span class="keyword">AVG</span>(sal) avg_sal,deptno <span class="keyword">FROM</span> emp</span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno) s</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = s.deptno</span><br><span class="line"><span class="keyword">AND</span> e.sal &gt; s.avg_sal</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>练习:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询4人以上(包含4人)的部门员工的工资是多少</span></span><br><span class="line"><span class="comment">-- 方法1</span></span><br><span class="line"><span class="keyword">SELECT</span> e.ename,e.sal,e.deptno</span><br><span class="line"><span class="keyword">FROM</span> emp e <span class="keyword">JOIN</span> (<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp</span><br><span class="line">             <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno <span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*)&gt;=<span class="number">4</span> ) d</span><br><span class="line"><span class="keyword">ON</span> e.deptno=d.deptno;</span><br><span class="line"><span class="comment">-- 方法2</span></span><br><span class="line"><span class="keyword">SELECT</span> ename, sal,deptno</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> deptno <span class="keyword">IN</span> (<span class="keyword">SELECT</span> deptno <span class="keyword">FROM</span> emp</span><br><span class="line">             <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno <span class="keyword">HAVING</span> <span class="keyword">COUNT</span>(*)&gt;=<span class="number">4</span> );</span><br><span class="line"><span class="comment">-- 方法3</span></span><br><span class="line"><span class="keyword">SELECT</span> e.ename,e.sal,e.deptno</span><br><span class="line"><span class="keyword">FROM</span> emp e,(<span class="keyword">SELECT</span> <span class="keyword">COUNT</span>(*) per_num, deptno <span class="keyword">FROM</span> emp</span><br><span class="line">            <span class="keyword">GROUP</span> <span class="keyword">BY</span> deptno) d</span><br><span class="line"><span class="keyword">WHERE</span> e.deptno = d.deptno</span><br><span class="line"><span class="keyword">AND</span> d.per_num&gt;=<span class="number">4</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>EXISTS 关键字</strong></p>
+<blockquote>
+<p>该关键字后面跟一个子查询,用于在 WHERE 中作为过滤条件使用,是用来<br>判断其后的子查询是否可以查出数据,若可以则 EXISTS 返回true, 否则返回 false</p>
+</blockquote>
+<p>查询有员工的部门<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno , d.dname, d.loc <span class="keyword">FROM</span>  dept d</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span>(<span class="keyword">SELECT</span> *<span class="keyword">FROM</span> emp e</span><br><span class="line">            <span class="keyword">WHERE</span> e.deptno = d.deptno);</span><br></pre></td></tr></table></figure></p>
+<p>查询没有员工的部门<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> d.deptno , d.dname, d.loc <span class="keyword">FROM</span>  dept d</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>(<span class="keyword">SELECT</span> *<span class="keyword">FROM</span> emp e</span><br><span class="line">            <span class="keyword">WHERE</span> e.deptno = d.deptno)</span><br></pre></td></tr></table></figure></p>
+<p>查看有下属的员工的工号,名字,职位,工资<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> e.empno, e.ename, e.job,e.sal</span><br><span class="line"><span class="keyword">FROM</span> emp e</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span>(<span class="keyword">SElECT</span> *<span class="keyword">FROM</span> emp m <span class="keyword">WHERE</span> e.empno=m.mgr )</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="2-分页查询"><a href="#2-分页查询" class="headerlink" title="2. 分页查询"></a>2. 分页查询</h3><blockquote>
+<ul>
+<li>分页查询是分段查询数据,在查询的数据量非常大的时候尤其重要.分页查询可以减少,系统资源消耗,响应速度快.<br>不同的数据库分页的语法不一致</li>
+<li>Oracle中使用 ROWNUM 解决分页,<br>ROWNUM 是一个伪列,不存在于任何一张表中,但是每张表都可以查询该字段.<br>在查询某张表示,只要可以查询出一条记录,该字段的值就是该条记录的行号,从1开始生成的过程在查询过程中进行</li>
+</ul>
+</blockquote>
+<p> 举例一:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename, sal, deptno <span class="keyword">FROM</span></span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">ROWNUM</span> <span class="keyword">BETWEEN</span> <span class="number">6</span> <span class="keyword">AND</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p>以上查询不出任何数据<br>原因: 编号是在查询的过程中进行的,所以不能用 ROWNUM 在编号的过程中进行&gt;1以上的数据的判断,否则查询不出数据</p>
+<p>  正确的做法:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename, sal, deptno <span class="keyword">FROM</span></span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">ROWNUM</span> rn,ename,sal,deptno <span class="keyword">FROM</span> emp)</span><br><span class="line"><span class="keyword">WHERE</span> rn <span class="keyword">BETWEEN</span> <span class="number">6</span> <span class="keyword">AND</span> <span class="number">10</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>注意</strong> : 子查询中 ROWNUM 必须要指定别名才能保证外层查询使用的是 子查询中的 ROWNUM</p>
+<p> 举例二 :<br>分页与 ORDER BY<br>查询 工资排名 6 到 10  的员工信息<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span></span><br><span class="line">(<span class="keyword">SELECT</span> <span class="keyword">ROWNUM</span> rn ,t.*</span><br><span class="line"> <span class="keyword">FROM</span> (<span class="keyword">SELECT</span> ename, sal, deptno</span><br><span class="line">        <span class="keyword">FROM</span> emp</span><br><span class="line">        <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>) t</span><br><span class="line">  <span class="keyword">WHERE</span> <span class="keyword">ROWNUM</span> &lt;= <span class="number">10</span>)           <span class="comment">-- 第10条数据之后不再编号,提高效率</span></span><br><span class="line"><span class="keyword">WHERE</span> rn <span class="keyword">BETWEEN</span> <span class="number">6</span> <span class="keyword">AND</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>若有排序需求,一定要先排序,因为排序操作是在最后执行的</strong>.</p>
+<h4 id="计算分页公式"><a href="#计算分页公式" class="headerlink" title="计算分页公式"></a>计算分页公式</h4><p>page : 页号<br>pageSize : 每页的条目数</p>
+<blockquote>
+<p>start : ( page - 1 ) * pageSize + 1</p>
+<p>end : pageSize * page</p>
+</blockquote>
+<hr>
+<h3 id="3-排序函数"><a href="#3-排序函数" class="headerlink" title="3 . 排序函数"></a>3 . 排序函数</h3><blockquote>
+<p>排序函数允许按照指定字段分组, 再按照指定字段排序, 然后生成组内编号</p>
+</blockquote>
+<ul>
+<li><p>ROW_NUMBER ()</p>
+<blockquote>
+<p>生成组内连续且唯一的数字<br>查看每个部门的工资排名:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">  ename,</span><br><span class="line">  sal,</span><br><span class="line">  deptno,</span><br><span class="line">  ROW_NUMBER() <span class="keyword">OVER</span>(<span class="keyword">PARTITION</span> <span class="keyword">BY</span> deptno <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>)</span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>RANK ()</p>
+<blockquote>
+<p>生成组内不连续也不唯一的数字<br>查看每个部门的工资排名(允许相同名次):</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">deptno,</span><br><span class="line"><span class="keyword">RANK</span>() <span class="keyword">OVER</span>( <span class="keyword">PARTITION</span> <span class="keyword">BY</span> deptno <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span>)</span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>DENSE_RANK ()</p>
+<blockquote>
+<p>生成组内连续但不唯一的数字<br>查看每个部门的工资排名(允许相同名次,但名次不跳跃):</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">ename,</span><br><span class="line">sal,</span><br><span class="line">deptno,</span><br><span class="line"><span class="keyword">DENSE_RANK</span>() <span class="keyword">OVER</span>( <span class="keyword">PARTITION</span> <span class="keyword">BY</span> deptno <span class="keyword">ORDER</span> <span class="keyword">BY</span> sal <span class="keyword">DESC</span> )</span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h3 id="4-DECODE-函数"><a href="#4-DECODE-函数" class="headerlink" title="4. DECODE 函数"></a>4. DECODE 函数</h3><blockquote>
+<p>DECODE 函数用于比较的 参数 1<br>若匹配 参数 2 则 返回参数 3<br>若匹配 参数 4 则 返回参数 5<br>… 最后一个默认值</p>
+</blockquote>
+<p>查询职员的职位来计算奖金<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">ename,</span><br><span class="line">job ,</span><br><span class="line">sal,</span><br><span class="line"><span class="keyword">DECODE</span>(job,</span><br><span class="line">  <span class="string">'MANAGER'</span>,sal*<span class="number">1.2</span>,</span><br><span class="line">  <span class="string">'ANALYST'</span>,sal*<span class="number">1.1</span>,</span><br><span class="line">  <span class="string">'SALESMAN'</span>,</span><br><span class="line">  sal*<span class="number">1.05</span>) bonus</span><br><span class="line"><span class="keyword">FROM</span> emp;</span><br></pre></td></tr></table></figure></p>
+<p>计算指定类别职位的人数<br>如:指定 MANAGER 和 ANALYST 为 VIP , 其他为 OPERATION, 分别统计这两类职位的人数<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DECODE</span>(job,</span><br><span class="line">              <span class="string">'ANALYST'</span>,<span class="string">'VIP'</span>,</span><br><span class="line">              <span class="string">'MANAGER'</span>,<span class="string">'VIP'</span>,</span><br><span class="line">              <span class="string">'OPERATION'</span></span><br><span class="line">              ) job,</span><br><span class="line">        <span class="keyword">COUNT</span>(*) job_cnt</span><br><span class="line"><span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span>  <span class="keyword">DECODE</span>(job,</span><br><span class="line">              <span class="string">'ANALYST'</span>,<span class="string">'VIP'</span>,</span><br><span class="line">              <span class="string">'MANAGER'</span>,<span class="string">'VIP'</span>,</span><br><span class="line">              <span class="string">'OPERATION'</span></span><br><span class="line">              )</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="5-集合操作"><a href="#5-集合操作" class="headerlink" title="5 . 集合操作"></a>5 . 集合操作</h3><blockquote>
+<ul>
+<li>UNION : 获取结果集并集,并去除重复</li>
+<li>UNION ALL : 获取结果集并集,但不去重</li>
+<li>INTERSECT : 获取结果集交集</li>
+<li>MINUS : 获取结果集的差集(结果集 1 中存在, 结果集 2 中不存在)</li>
+</ul>
+</blockquote>
+<p>示例:(两个查询子句的查询字段必须相同)<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename,job,sal <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> job = <span class="string">'MANAGER'</span></span><br><span class="line"><span class="keyword">UNION</span> <span class="comment">-- 这里替换其他集合操作</span></span><br><span class="line"><span class="keyword">SELECT</span> ename,job,sal <span class="keyword">FROM</span> emp</span><br><span class="line"><span class="keyword">WHERE</span> sal&gt;<span class="number">2500</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="6-高级分组函数"><a href="#6-高级分组函数" class="headerlink" title="6 . 高级分组函数"></a>6 . 高级分组函数</h3><ul>
+<li><p>ROLLUP()</p>
+<blockquote>
+<p>分组情况递减<br>GROUP BY ROLLUP(a , b , c) 等同于</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> a, b ,c</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> a, b  </span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> a</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">全表</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>CUBE()</p>
+<blockquote>
+<p>分组情况全排列<br>GROUP BY CUBE0(a , b , c) 等同于 (内部实现并非 UNION ALL, 效率更高但效果相同) :</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> a, b , c</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> a, b  </span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> a, c</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> c</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> b, c  </span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> b</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> c</span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">全表</span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+<li><p>GROUPING SETS()</p>
+<blockquote>
+<p>自定义分组<br>如:<br><code>SELECT... GROUP BY GROUPING SETS((year, month), (month))</code><br>指定</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SELECT... <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">year</span> , <span class="keyword">month</span></span><br><span class="line"><span class="keyword">UNION</span> ALL</span><br><span class="line">SELECT.. <span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">month</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-03-29T08:37:02.755Z" itemprop="dateUpdated">2018-03-29 16:37:02</time>
+</span><br>
+
+
+        
+        转载请注明原作者，如果你觉得这篇文章对你有帮助或启发，也可以点击打赏请我喝咖啡。
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/head.jpg" alt="LyonAn">
+            LyonAn
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/29/oracle学习笔记03/&title=《Oracle 学习笔记03》 — LyonAn&pic=http://yoursite.com/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/29/oracle学习笔记03/&title=《Oracle 学习笔记03》 — LyonAn&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/29/oracle学习笔记03/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 学习笔记03》 — LyonAn&url=http://yoursite.com/2018/03/29/oracle学习笔记03/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/29/oracle学习笔记03/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/29/oracle学习笔记04/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Oracle 学习笔记04</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/03/20/oracle学习笔记02/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">Oracle 学习笔记02</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.png" alt="打赏二维码">
+        </div>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>LyonAn &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/03/29/oracle学习笔记03/&title=《Oracle 学习笔记03》 — LyonAn&pic=http://yoursite.com/img/head.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/03/29/oracle学习笔记03/&title=《Oracle 学习笔记03》 — LyonAn&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/03/29/oracle学习笔记03/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Oracle 学习笔记03》 — LyonAn&url=http://yoursite.com/2018/03/29/oracle学习笔记03/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/03/29/oracle学习笔记03/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aS26EMBAFwNz/0mQbKYK812YiYYrVCJjYNZFa/fHXV3wdv678/Z93zp5e37/twsDAeCzjuLwSxtnC7V9I1j2lYmBgvICRbOLs/Xy715tL1jq9j4GBgRFvfWXTGBgYGJ9gtMVqUqZiYGBgrBSxbYst31bCvq0Wx8DAeCAj77r//+ePzDcwMDAexTjKKy9NVxLBelcYGBhbM2ZpX76t9SBepKEYGBibMmZlZxuC8yFlu9ZS9YyBgfFwRlsnrrfbVn5QDAyMNzDyYnJ2hGJW4iZPoxwTAwPj4YzrB+uNsBwwG3NGJ0cwMDC2YCQhbxYW200PgywGBsbWjKiZFTf025SxHWqevomBgfECRh5q8yQvuZMkplFyiYGBsTUjX6YNqfeOOYsqHAMDY2vGvYfA8lFBOwQtanEMDIwtGLPydVamtoPMIqHEwMB4MaNN+/LUcP0Y2XD6ioGB8XDGvYfA2pAabfcMhoGBsTWjXWbWmFsPylEgxsDAeAFjdpBiJd1sB5l/7BADA+OVjPWDX7OjGMMmHQYGxgsYs1HirARtvxWNCjAwMDZlHOWVN+vbEULy3ej/gIGBsR1jFuyui9IkEUyacbO0FQMDY1dGG2Sv32wHALOAG/3SGBgY2zHywLdSdn78sAUGBgZG0J6760fJR6QYGBgYbR3clrtt8y6axGJgYGzKWGmc5UveFZQxMDDexmhLx7uQLXU2TMXAwHg44xszldsZ6/B7PwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = 'LyonAn';
+            clearTimeout(titleTime);
+        } else {
+            document.title = 'LyonAn';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
