@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="LyonAn">
 <meta property="og:description" content="Oracle 数据库( SQL基础查询)1. 基本查询语句 使用别名  当一个SELECT 子句中查询的内容是一个函数或者表达式, 那么在结果集中对应的该字段的字段名就是这个函数表达式,可读性差,为此应当为该列添加别名  SELECT ename , sal*12 salary  FROM emp或SELECT ename , sal*12 AS salary  FROM emp别名不区分 大小写">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-29T06:22:16.636Z">
+<meta property="og:updated_time" content="2018-03-29T06:43:22.696Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Oracle 学习笔记02">
 <meta name="twitter:description" content="Oracle 数据库( SQL基础查询)1. 基本查询语句 使用别名  当一个SELECT 子句中查询的内容是一个函数或者表达式, 那么在结果集中对应的该字段的字段名就是这个函数表达式,可读性差,为此应当为该列添加别名  SELECT ename , sal*12 salary  FROM emp或SELECT ename , sal*12 AS salary  FROM emp别名不区分 大小写">
@@ -291,16 +291,16 @@ WHERE sal BETWEEN 1500 AND　3000</code></p>
 <blockquote>
 <p>HAVING 子句必须紧跟在GROUP BY 子句之后,作用是添加条件来过滤不同的分组, HAVING 可以用聚合函数作为过滤条件<br>查看平均工资高于2000的部门 的平均工资</p>
 </blockquote>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT AVG(sal) FROM emp</span><br><span class="line">GROUP BY deptno</span><br><span class="line">HAVING AVG(sal)&gt;2000</span><br><span class="line">	```  </span><br><span class="line"> 查看平均工资高于2000 的部门的最高和最低工资</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>SELECT MAX(sal) , MIN(sal), deptno  FROM emp<br>GROUP BY deptno<br>HAVING AVG(sal)&gt;2000<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看最高工资&gt;=3000 的职位的平均工资</span><br></pre></td></tr></table></figure></p>
-<p>SELECT AVG(sal) , job FROM emp<br>GROUP BY job<br>HAVING MAX(sal)&gt;=3000<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line">### SQL 关联查询</span><br><span class="line">&gt;- 关联查询时间建立在多张上进行联合查询</span><br><span class="line">- 查询的结果集中,每一条记录中的字段可能来自不同的表</span><br><span class="line">- 重点: 找到表与表的记录之间的对应关系</span><br><span class="line"></span><br><span class="line">查询每个员工的基本信息及其部门信息</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT AVG(sal) FROM emp</span><br><span class="line">GROUP BY deptno</span><br><span class="line">HAVING AVG(sal)&gt;2000</span><br><span class="line">```  </span><br><span class="line"> 查看平均工资高于2000 的部门的最高和最低工资</span><br></pre></td></tr></table></figure>
+<p>SELECT MAX(sal) , MIN(sal), deptno  FROM emp<br>GROUP BY deptno<br>HAVING AVG(sal)&gt;2000<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">查看最高工资&gt;=3000 的职位的平均工资</span><br></pre></td></tr></table></figure></p>
+<p>SELECT AVG(sal) , job FROM emp<br>GROUP BY job<br>HAVING MAX(sal)&gt;=3000<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"></span><br><span class="line">### SQL 关联查询</span><br><span class="line">&gt;- 关联查询时间建立在多张上进行联合查询</span><br><span class="line">- 查询的结果集中,每一条记录中的字段可能来自不同的表</span><br><span class="line">- 重点: 找到表与表的记录之间的对应关系</span><br><span class="line"></span><br><span class="line">查询每个员工的基本信息及其部门信息</span><br></pre></td></tr></table></figure></p>
 <p>SELECT e.ename, e.job, e.sal , d.dname, d.loc, d.deptno<br>FROM emp e, dept d<br>WHERE e.deptno = d.deptno<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- 上述 SQL 中: e.deptno = d.deptno 条件是用来联系 emp 和 dept 的数据关系的,这样的条件称为连接条件</span><br><span class="line"></span><br><span class="line">- 在关联查询中,必须要添加连接条件,N 张表关联查询至少要添加 N-1 连接条件.不添加连接条件,会产生笛卡尔积 ( 实际开发要避免 )</span><br><span class="line"></span><br><span class="line">- 关联查询的连接条件与过滤条件要同时成立</span><br></pre></td></tr></table></figure></p>
-<p>   SELECT e.ename , e.job, e.sal, e.deptno,d.dname<br>   FROM emp e, dept d<br>   WHERE e.deptno = d.deptno<br>   AND d.dname=’SALES’<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"> -  **内连接**</span><br><span class="line"> 关联查询的另一种写法</span><br></pre></td></tr></table></figure></p>
+<p>   SELECT e.ename , e.job, e.sal, e.deptno,d.dname<br>   FROM emp e, dept d<br>   WHERE e.deptno = d.deptno<br>   AND d.dname=’SALES’<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"> -  **内连接**</span><br><span class="line"> 关联查询的另一种写法</span><br></pre></td></tr></table></figure></p>
 <p> SELECT e.ename, d.dname<br> FROM emp e JOIN dept d<br> ON e.deptno= d.deptno<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">这样写的好处是 过滤条件和连接条件分开 ,结构更明确</span><br></pre></td></tr></table></figure></p>
 <p>  SELECT e.ename, d.dname<br> FROM emp e JOIN dept d<br> ON e.deptno= d.deptno<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">---</span><br><span class="line"> -  **外连接**</span><br><span class="line">  &gt;内连接返回满足连接条件的数据记录,而如果需要将不满足连接条件的记录返回,则需要使用外连接</span><br><span class="line"></span><br><span class="line"> - **左外连接**:</span><br><span class="line"> &gt;以 JOIN 左侧的表为驱动表,该表所有记录都要显示出来,那么当某条记录不满足连接条件时,来自 JOIN 右侧表中的字段的值全部为 NULL</span><br></pre></td></tr></table></figure></p>
-<p>  SELECT e.ename,e.sal, d.dname ,d.loc<br> FROM emp e LEFT OUTER JOIN dept d<br> ON e.deptno= d.deptno<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"> - **右外连接** : 以 JOIN 右侧的表为驱动表,其他特性同上</span><br><span class="line">  `RIGTH OUTER JOIN ...ON...`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> - **全外连接** : JOIN 两侧的表都为驱动表,综合左右外连接内容</span><br><span class="line">  `FULL OUTER JOIN...ON...`</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> - **一般关联查询实现外连接效果**: (+) 定义在连接条件上,定义在哪边哪边就补 NULL</span><br><span class="line">但是无法实现全外连接</span><br></pre></td></tr></table></figure></p>
+<p>  SELECT e.ename,e.sal, d.dname ,d.loc<br> FROM emp e LEFT OUTER JOIN dept d<br> ON e.deptno= d.deptno<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> - **右外连接** : 以 JOIN 右侧的表为驱动表,其他特性同上</span><br><span class="line">  `RIGTH OUTER JOIN ...ON...`</span><br><span class="line"></span><br><span class="line"> - **全外连接** : JOIN 两侧的表都为驱动表,综合左右外连接内容</span><br><span class="line">  `FULL OUTER JOIN...ON...`</span><br><span class="line"></span><br><span class="line"> - **一般关联查询实现外连接效果**: (+) 定义在连接条件上,定义在哪边哪边就补 NULL</span><br><span class="line">但是无法实现全外连接</span><br></pre></td></tr></table></figure></p>
 <p>SELECT e.ename, d.dname FROM emp e, dept d<br>WHERE e.deptno(+) = d.deptno<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- **自连接**</span><br><span class="line">&gt;当前表的一条记录对应当前表本身的多条记录, 这种设计就是自连接,自连接是用来解决数据内容相同,但是数据间又存在上下级关系的树状结构情况</span><br><span class="line"></span><br><span class="line"> 查找每个员工及其上司的名字</span><br></pre></td></tr></table></figure></p>
 <p>SELECT e.ename worker, m.ename manager FROM emp e,emp m<br>WHERE e.mgr = m.empno<br>    <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">上述结果采用内连接</span><br></pre></td></tr></table></figure></p>
 <p> SELECT e.ename worker, m.ename manager FROM emp e JOIN emp m<br> ON e.mgr = m.empno<br>    ```</p>
@@ -311,7 +311,7 @@ WHERE sal BETWEEN 1500 AND　3000</code></p>
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2018-03-29T06:22:16.636Z" itemprop="dateUpdated">2018-03-29 14:22:16</time>
+    最后更新时间：<time datetime="2018-03-29T06:43:22.696Z" itemprop="dateUpdated">2018-03-29 14:43:22</time>
 </span><br>
 
 
@@ -391,14 +391,21 @@ WHERE sal BETWEEN 1500 AND　3000</code></p>
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/03/20/oracle学习笔记01/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Oracle 学习笔记01</h4>
+      </a>
+    </div>
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/03/20/oracle学习笔记01/" id="post-next" class="post-nav-link">
+      <a href="/2017/11/30/基于-Hexo-GitHub-Pages-搭建个人博客/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">Oracle 学习笔记01</h4>
+        <h4 class="title">基于 Hexo + GitHub Pages 搭建个人博客</h4>
       </a>
     </div>
   
